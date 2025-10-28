@@ -1,28 +1,45 @@
-import { useState } from 'react'
+import React from 'react';
+import Hero from './components/Hero';
+import FoodLogger from './components/FoodLogger';
+import ExerciseTracker from './components/ExerciseTracker';
+import ProgressDashboard from './components/ProgressDashboard';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Count is {count}
-          </button>
+    <div className="min-h-screen bg-white text-slate-900">
+      <header className="sticky top-0 z-40 w-full border-b border-slate-200 bg-white/70 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
+          <div className="flex items-center gap-2">
+            <div className="h-8 w-8 rounded-md bg-gradient-to-br from-emerald-500 to-sky-500" />
+            <span className="font-semibold tracking-tight">VitalTrack</span>
+          </div>
+          <nav className="hidden gap-6 text-sm md:flex">
+            <a href="#food" className="text-slate-700 hover:text-emerald-600">Food</a>
+            <a href="#exercise" className="text-slate-700 hover:text-sky-600">Exercise</a>
+            <a href="#progress" className="text-slate-700 hover:text-emerald-600">Progress</a>
+          </nav>
         </div>
-      </div>
-    </div>
-  )
-}
+      </header>
 
-export default App
+      <Hero />
+
+      <main className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 py-10 lg:grid-cols-3">
+        <section id="food" className="lg:col-span-2">
+          <FoodLogger />
+        </section>
+        <aside className="lg:col-span-1" id="progress">
+          <ProgressDashboard />
+        </aside>
+        <section id="exercise" className="lg:col-span-3">
+          <ExerciseTracker />
+        </section>
+      </main>
+
+      <footer className="border-t border-slate-200 py-8">
+        <div className="mx-auto max-w-7xl px-4 text-sm text-slate-500">
+          © {new Date().getFullYear()} VitalTrack. Stay consistent. Be well.
+        </div>
+      </footer>
+    </div>
+  );
+}
